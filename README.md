@@ -10,3 +10,5 @@ This project serves as a final project from learning the fundamentals or React. 
 - The use of state
 - The use of conditional rendering
 - Dealing with side effects
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
