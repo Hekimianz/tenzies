@@ -14,4 +14,3 @@ This project serves as practice for the fundamentals of React. That being:
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-<img src='https://w7.pngwing.com/pngs/79/518/png-transparent-js-react-js-logo-react-react-native-logos-icon-thumbnail.png'/>
