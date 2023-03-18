@@ -6,6 +6,10 @@ import { nanoid } from "nanoid";
 export default function App() {
   const [dice, setDice] = React.useState(allNewDice);
   const [tenzies, setTenzies] = React.useState(false);
+  const [totalRolls, setTotalRolls] = React.useState(0);
+  const [highScore, setHighScore] = React.useState(
+    JSON.parse(localStorage.getItem("highScore")) || 0
+  );
 
   React.useEffect(() => {
     const allHeld = dice.every((die) => die.isHeld);
@@ -13,7 +17,6 @@ export default function App() {
     const allValue = dice.every((die) => die.value === firstValue);
     if (allHeld && allValue) {
       setTenzies(true);
-      console.log("You Won!");
     }
   }, [dice]);
 
@@ -43,6 +46,7 @@ export default function App() {
         return die.isHeld ? die : generateNewDie();
       });
     });
+    setTotalRolls((oldTotal) => oldTotal + 1);
   }
 
   function generateNewDie() {
@@ -52,6 +56,11 @@ export default function App() {
   function newGame() {
     setTenzies(false);
     setDice(allNewDice);
+    setTotalRolls(0);
+    if (totalRolls < highScore) {
+      localStorage.setItem("highScore", totalRolls);
+      setHighScore(totalRolls);
+    }
   }
 
   const diceElements = dice.map((item) => {
@@ -68,6 +77,15 @@ export default function App() {
 
   return (
     <main>
+      {tenzies && (
+        <Confetti
+          style={{
+            position: "fixed",
+          }}
+        />
+      )}
+      <span className="main--rolls">Number of rolls: {totalRolls} </span>
+      <span className="main--highScore">High score: {highScore} </span>
       <h1 className="main--title">Tenzies</h1>
       <p className="main--desc">
         Roll until all dice are the same. Click each die to freeze it at its
@@ -77,7 +95,6 @@ export default function App() {
       <button className="roll--btn" onClick={tenzies ? newGame : roll}>
         {tenzies ? "New Game" : "Roll"}
       </button>
-      {tenzies && <Confetti />}
     </main>
   );
 }
