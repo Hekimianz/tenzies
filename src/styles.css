@@ -178,7 +178,7 @@ main {
 }
 
 .roll--btn {
-  width: 92px;
+  width: 130px;
   height: 36px;
   background-color: #5035ff;
   border-radius: 4px;
@@ -193,4 +193,23 @@ main {
 
 .roll--btn:active {
   box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.main--title {
+  font-weight: 700;
+  font-size: 2em;
+  letter-spacing: -0.03em;
+  color: #2b283a;
+}
+
+.main--desc {
+  width: 232px;
+  height: 48px;
+  color: #4a4e74;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  margin-bottom: 23px;
+  margin-top: 5px;
 }
