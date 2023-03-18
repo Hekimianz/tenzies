@@ -1,6 +1,6 @@
 # Tenzies
 
-This project serves as a final project from learning the fundamentals or React. That being:
+This project serves as practice for the fundamentals of React. That being:
 
 - The use of create-react-app.
 - The creation of React components.
