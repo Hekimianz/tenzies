@@ -8,22 +8,46 @@ export default function App() {
   function allNewDice() {
     let arr = [];
     for (let i = 0; i < 10; i++) {
-      arr.push({
-        value: Math.ceil(Math.random() * 6),
-        isHeld: false,
-        id: nanoid(),
-      });
+      arr.push(generateNewDie());
     }
     return arr;
   }
 
-  const diceElements = dice.map((item) => {
-    return <Die num={item.value} key={item.id} />;
-  });
-
-  function roll() {
-    setDice(allNewDice);
+  function holdDice(id) {
+    setDice((oldDice) => {
+      return oldDice.map((die) => {
+        return die.id === id
+          ? {
+              ...die,
+              isHeld: !die.isHeld,
+            }
+          : die;
+      });
+    });
   }
+  function roll() {
+    setDice((oldDice) => {
+      return oldDice.map((die) => {
+        return die.isHeld ? die : generateNewDie();
+      });
+    });
+  }
+
+  function generateNewDie() {
+    return { value: Math.ceil(Math.random() * 6), isHeld: false, id: nanoid() };
+  }
+
+  const diceElements = dice.map((item) => {
+    return (
+      <Die
+        handleClick={() => holdDice(item.id)}
+        isHeld={item.isHeld}
+        num={item.value}
+        key={item.id}
+        id={item.id}
+      />
+    );
+  });
 
   return (
     <main>
