@@ -57,7 +57,7 @@ export default function App() {
     setTenzies(false);
     setDice(allNewDice);
     setTotalRolls(0);
-    if (totalRolls < highScore) {
+    if (totalRolls < highScore || highScore === 0) {
       localStorage.setItem("highScore", totalRolls);
       setHighScore(totalRolls);
     }
